@@ -1,11 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/config.php';
 
-var_dump(DB_HOST);
-exit;
-
-require_once __DIR__ . '/../config/config.php';
-
 class Database {
 
     private $conn;

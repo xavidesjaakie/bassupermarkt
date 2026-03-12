@@ -25,12 +25,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <h2>Nieuwe Klant</h2>
 
 <form method="POST">
-    Naam: <input type="text" name="naam" required><br>
-    Email: <input type="email" name="email" required><br>
-    Adres: <input type="text" name="adres" required><br>
-    Postcode: <input type="text" name="postcode"><br>
-    Woonplaats: <input type="text" name="woonplaats"><br><br>
-    <button type="submit">Opslaan</button>
+
+<label>Naam</label><br>
+<input type="text" name="naam" required><br><br>
+
+<label>Email</label><br>
+<input type="email" name="email" required><br><br>
+
+<label>Adres</label><br>
+<input type="text" name="adres" required><br><br>
+
+<label>Postcode</label><br>
+<input type="text" name="postcode"><br><br>
+
+<label>Woonplaats</label><br>
+<input type="text" name="woonplaats"><br><br>
+
+<button type="submit">Opslaan</button>
+
 </form>
 
+<br>
 <a href="read.php">Terug</a>

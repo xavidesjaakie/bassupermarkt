@@ -9,7 +9,6 @@ class Klant {
         $this->conn = $db;
     }
 
-    # CREATE
     public function insert($naam, $email, $adres, $postcode, $woonplaats) {
 
         $sql = "INSERT INTO $this->table
@@ -27,23 +26,26 @@ class Klant {
         ]);
     }
 
-    # READ ALL
     public function readAll() {
+
         $sql = "SELECT * FROM $this->table ORDER BY klantNaam";
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    # READ BY ID
     public function readById($id) {
+
         $sql = "SELECT * FROM $this->table WHERE klantId = :id";
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    # UPDATE
     public function update($id, $naam, $email, $adres, $postcode, $woonplaats) {
 
         $sql = "UPDATE $this->table
@@ -66,10 +68,10 @@ class Klant {
         ]);
     }
 
-    # DELETE
     public function delete($id) {
 
         $sql = "DELETE FROM $this->table WHERE klantId = :id";
+
         $stmt = $this->conn->prepare($sql);
 
         return $stmt->execute([':id' => $id]);

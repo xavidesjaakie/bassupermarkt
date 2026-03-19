@@ -46,6 +46,21 @@ class Klant {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // 🔍 NIEUW: zoeken op naam
+    public function searchByName($naam) {
+
+        $sql = "SELECT * FROM $this->table 
+                WHERE klantNaam LIKE :naam 
+                ORDER BY klantNaam";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':naam' => '%' . $naam . '%'
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function update($id, $naam, $email, $adres, $postcode, $woonplaats) {
 
         $sql = "UPDATE $this->table

@@ -6,7 +6,13 @@ $database = new Database();
 $db = $database->connect();
 
 $klant = new Klant($db);
-$klanten = $klant->readAll();
+
+// 🔍 Zoek functionaliteit
+if (isset($_GET['zoek']) && $_GET['zoek'] != '') {
+    $klanten = $klant->searchByName($_GET['zoek']);
+} else {
+    $klanten = $klant->readAll();
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +28,14 @@ $klanten = $klant->readAll();
 <h2>Klanten Overzicht</h2>
 
 <a class="btn" href="insert.php">Nieuwe klant</a>
+
+<!-- 🔍 Zoek formulier -->
+<form method="GET">
+    <input type="text" name="zoek" placeholder="Zoek op naam">
+    <button type="submit">Zoeken</button>
+</form>
+
+<br>
 
 <table>
 
@@ -41,7 +55,12 @@ $klanten = $klant->readAll();
 
 <td>
 <a class="edit" href="update.php?id=<?= $row['klantId']; ?>">Wijzig</a>
-<a class="delete" href="delete.php?id=<?= $row['klantId']; ?>">Verwijder</a>
+
+<a class="delete" 
+   href="delete.php?id=<?= $row['klantId']; ?>" 
+   onclick="return confirm('Weet je het zeker?')">
+   Verwijder
+</a>
 </td>
 
 </tr>
